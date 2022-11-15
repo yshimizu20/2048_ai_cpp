@@ -42,6 +42,14 @@ bool Game::addTile(vector<vector<int> > &board) {
   return true;
 }
 
+int Game::run(string direction) {
+  int points = move(mainBoard, direction);
+  if (points >= 0) {
+    addTile(mainBoard);
+  }
+  return points;
+}
+
 int Game::move(vector<vector<int> >& board, string direction) {
   int ret;
 
@@ -61,7 +69,7 @@ int Game::move(vector<vector<int> >& board, string direction) {
     rotateLeft(board);
   } else {
     cout << "Invalid direction" << endl;
-    return 0;
+    return -2;
   }
 
   return ret;
