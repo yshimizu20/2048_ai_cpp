@@ -5,8 +5,8 @@ Game::Game(int target) {
   win = target;
   mainBoard = vector<vector<int> >(4, vector<int>(4, 0));
 
-  addTile();
-  addTile();
+  addTile(mainBoard);
+  addTile(mainBoard);
 }
 
 void Game::printBoard() {
@@ -16,6 +16,30 @@ void Game::printBoard() {
     }
     cout << endl;
   }
+}
+
+bool Game::addTile(vector<vector<int> > &board) {
+  vector<int> emptyTiles;
+
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 4; j++) {
+      if (board[i][j] == 0) {
+        emptyTiles.push_back(i * 4 + j);
+      }
+    }
+  }
+
+  if (emptyTiles.size() == 0) {
+    return false;
+  }
+
+  int index = rand() % emptyTiles.size();
+  int row = emptyTiles[index] / 4;
+  int col = emptyTiles[index] % 4;
+
+  board[row][col] = (rand() % 10 == 0) ? 4 : 2;
+
+  return true;
 }
 
 int Game::move(vector<vector<int> >& board, string direction) {

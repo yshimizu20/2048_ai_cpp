@@ -15,7 +15,7 @@ public:
   Game(int target);
 
   void printBoard();
-  void addTile();
+  bool addTile(vector<vector<int> > &board);
   int move(vector<vector<int> >& board, string direction);
   int moveRight(vector<vector<int> > &board);
   int mergeRight(vector<vector<int> > &board);
