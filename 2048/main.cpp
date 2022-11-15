@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "policy.hpp"
 #include <iostream>
 
 using namespace std;
@@ -11,6 +12,12 @@ int main(void) {
 
   g.printBoard();
   cin >> userInput;
+  if (userInput == "ai") {
+    Policy p(g);
+    p.play();
+    cout << "game over" << endl;
+    return 0;
+  }
   while (userInput != 'q') {
     if (userInput == 'w') {
       response = g.run(3);
