@@ -9,6 +9,7 @@ int main(void) {
   char userInput;
   int response;
 
+  g.printBoard();
   cin >> userInput;
   while (userInput != 'q') {
     if (userInput == 'w') {
