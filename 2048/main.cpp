@@ -13,13 +13,13 @@ int main(void) {
   cin >> userInput;
   while (userInput != 'q') {
     if (userInput == 'w') {
-      response = g.run("up");
+      response = g.run(3);
     } else if (userInput == 'a') {
-      response = g.run("left");
+      response = g.run(2);
     } else if (userInput == 's') {
-      response = g.run("down");
+      response = g.run(1);
     } else if (userInput == 'd') {
-      response = g.run("right");
+      response = g.run(0);
     }
     if (response >= 0) {
       g.printBoard();

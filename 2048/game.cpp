@@ -18,6 +18,11 @@ void Game::printBoard() {
   }
 }
 
+void Game::getBoard() {
+  vector<vector<int> > board = mainBoard;
+  return board;
+}
+
 bool Game::addTile(vector<vector<int> > &board) {
   vector<int> emptyTiles;
 
@@ -42,7 +47,7 @@ bool Game::addTile(vector<vector<int> > &board) {
   return true;
 }
 
-int Game::run(string direction) {
+int Game::run(int direction) {
   int points = move(mainBoard, direction);
   if (points >= 0) {
     addTile(mainBoard);
@@ -50,20 +55,20 @@ int Game::run(string direction) {
   return points;
 }
 
-int Game::move(vector<vector<int> >& board, string direction) {
+int Game::move(vector<vector<int> >& board, int direction) {
   int ret;
 
-  if (direction == "right") {
+  if (direction == 0) {
     ret = moveRight(board);
-  } else if (direction == "left") {
-    rotate180(board);
-    ret = moveRight(board);
-    rotate180(board);
-  } else if (direction == "down") {
+  } else if (direction == 1) {
     rotateLeft(board);
     ret = moveRight(board);
     rotateRight(board);
-  } else if (direction == "up") {
+  } else if (direction == 2) {
+    rotate180(board);
+    ret = moveRight(board);
+    rotate180(board);
+  } else if (direction == 3) {
     rotateRight(board);
     ret = moveRight(board);
     rotateLeft(board);
