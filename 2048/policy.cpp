@@ -1,21 +1,27 @@
 #include "policy.hpp"
 
 
-Policy::Policy(Game g) {
-  game = g;
+Policy::Policy() {
+  cout << "Policy created" << endl;
 }
 
 void Policy::play() {
-  while (!game.checkWin()) {
-    applyBestMove();
+  while (1 == 1) {
+    int res = applyBestMove();
+    cout << res << endl;
+    if (res < 0) {
+      cout << "game over" << endl;
+      return;
+    }
+    game->printBoard();
   }
 }
 
-void Policy::applyBestMove() {
-  vector<vector<int> > board = game.getBoard();
-  int direction = bestMove(board, 4, 1.0).first;
+int Policy::applyBestMove() {
+  vector<vector<int> > board = game->getBoard();
+  int direction = bestMove(board, 3, 1.0).first;
 
-  game.run(direction);
+  return game->run(direction);
 }
 
 pair<int, float> Policy::bestMove(vector<vector<int> > &board, int depth, float prob) {
@@ -24,7 +30,7 @@ pair<int, float> Policy::bestMove(vector<vector<int> > &board, int depth, float 
 
   for (int dir = 0; dir < 4; dir++) {
     vector<vector<int> > newBoard = board;
-    int points = game.move(newBoard, dir);
+    int points = game->move(newBoard, dir);
 
     if (points >= 0) {
       float score = minOfPossibleMoves(newBoard, depth - 1, prob) + points;
@@ -77,7 +83,7 @@ float Policy::evalBoard(vector<vector<int> > &board) {
   return float(emptyCells + proximity + steadyIncrement);
 }
 
-int evaluateEmptyCells(vector<vector<int> > &board) {
+int evalEmptyCells(vector<vector<int> > &board) {
   int emptyCells = 0;
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 4; j++) {
@@ -89,7 +95,7 @@ int evaluateEmptyCells(vector<vector<int> > &board) {
   return emptyCells;
 }
 
-int evaluateSteadyIncrement(vector<vector<int> > &board) {
+int evalSteadyIncrement(vector<vector<int> > &board) {
   int leftright = 0, updown = 0;
 
   for (int i = 0; i < 4; i++) {
@@ -119,7 +125,7 @@ int evaluateSteadyIncrement(vector<vector<int> > &board) {
   return leftright + updown;
 }
 
-int evaluateProximity(vector<vector<int> > &board) {
+int evalProximity(vector<vector<int> > &board) {
   int proximity = 0;
 
   for (int i = 0; i < 4; i++) {

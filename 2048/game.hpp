@@ -12,7 +12,7 @@ private:
   int win;
 
 public:
-  Game(int target);
+  Game();
 
   void printBoard();
   vector<vector<int> > getBoard();
@@ -26,5 +26,4 @@ public:
   void rotateLeft(vector<vector<int> > &board);
   void rotate180(vector<vector<int> > &board);
   int getScore() const { return score; };
-  bool checkWin();
 };

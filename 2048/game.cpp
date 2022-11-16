@@ -1,8 +1,7 @@
 #include "game.hpp"
 
 
-Game::Game(int target) {
-  win = target;
+Game::Game() {
   mainBoard = vector<vector<int> >(4, vector<int>(4, 0));
 
   addTile(mainBoard);
@@ -16,9 +15,10 @@ void Game::printBoard() {
     }
     cout << endl;
   }
+  cout << endl;
 }
 
-void Game::getBoard() {
+vector<vector<int> > Game::getBoard() {
   vector<vector<int> > board = mainBoard;
   return board;
 }
@@ -50,7 +50,9 @@ bool Game::addTile(vector<vector<int> > &board) {
 int Game::run(int direction) {
   int points = move(mainBoard, direction);
   if (points >= 0) {
-    addTile(mainBoard);
+    if (!addTile(mainBoard)) {
+      return -1;
+    }
   }
   return points;
 }
@@ -84,16 +86,9 @@ int Game::moveRight(vector<vector<int> > &board) {
   bool isChanged = false;
   int ret;
 
-  printBoard();
   isChanged |= pushRight(board);
-  printBoard();
   ret = mergeRight(board);
-  printBoard();
   isChanged |= pushRight(board);
-  printBoard();
-
-  cout << isChanged << endl;
-  cout << ret << endl;
 
   if (ret == -1 && !isChanged) {
     return -1;
@@ -166,15 +161,4 @@ void Game::rotate180(vector<vector<int> > &board) {
       board[i][j] = tempBoard[3-i][3-j];
     }
   }
-}
-
-bool Game::checkWin() {
-  for (int i = 0; i < 4; i++) {
-    for (int j = 0; j < 4; j++) {
-      if (mainBoard[i][j] >= win) {
-        return true;
-      }
-    }
-  }
-  return false;
 }
