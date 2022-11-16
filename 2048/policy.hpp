@@ -1,6 +1,7 @@
 #include<vector>
 #include<stdlib.h>
 #include<climits>
+#include<math.h>
 #include "game.hpp"
 
 class Policy {
