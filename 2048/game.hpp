@@ -26,4 +26,5 @@ public:
   void rotateLeft(vector<vector<int> > &board);
   void rotate180(vector<vector<int> > &board);
   int getScore() const { return score; };
+  string boardToString(vector<vector<int>> &board);
 };

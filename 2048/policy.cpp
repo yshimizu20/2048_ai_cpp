@@ -9,6 +9,7 @@ void Policy::play() {
   while (1 == 1) {
     int res = applyBestMove();
     if (res < 0) {
+      game->printBoard();
       cout << "game over" << endl;
       return;
     }
@@ -16,7 +17,7 @@ void Policy::play() {
   }
 }
 
-int Policy::applyBestMove() {
+int ExtensivePolicy::applyBestMove() {
   vector<vector<int> > board = game->getBoard();
   int direction = bestMove(board, 3, 1.0).first;
 
@@ -81,10 +82,6 @@ float ExtensivePolicy::evalBoard(vector<vector<int> > &board) {
 
   return float(steadyIncrement * 3 - pow(16 - emptyCells, 2) + proximity);
 }
-
-// float MonteCarloTreeSearchPolicy::evalBoard(vector<vector<int> > &board) {
-//   return 0;
-// }
 
 int evalEmptyCells(vector<vector<int> > &board) {
   int emptyCells = 0;
