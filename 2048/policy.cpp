@@ -23,13 +23,13 @@ int Policy::applyBestMove() {
   return game->run(direction);
 }
 
-pair<int, float> Policy::bestMove(vector<vector<int> > &board, int depth, float prob) {
+pair<int, float> ExtensivePolicy::bestMove(vector<vector<int> > &board, int depth, float prob) {
   float bestScore = INT_MIN;
   int bestDirection = 0;
 
   for (int dir = 0; dir < 4; dir++) {
     vector<vector<int> > newBoard = board;
-    int points = game->move(newBoard, dir);
+    int points = Policy::game->move(newBoard, dir);
 
     if (points >= 0) {
       float score = minOfPossibleMoves(newBoard, depth - 1, prob) + points;
@@ -43,7 +43,7 @@ pair<int, float> Policy::bestMove(vector<vector<int> > &board, int depth, float 
   return make_pair(bestDirection, bestScore);
 }
 
-float Policy::minOfPossibleMoves(vector<vector<int> > &board, int depth, float prob) {
+float ExtensivePolicy::minOfPossibleMoves(vector<vector<int> > &board, int depth, float prob) {
   if (depth == 0) {
     return evalBoard(board);
   }
@@ -81,6 +81,10 @@ float ExtensivePolicy::evalBoard(vector<vector<int> > &board) {
 
   return float(steadyIncrement * 3 - pow(16 - emptyCells, 2) + proximity);
 }
+
+// float MonteCarloTreeSearchPolicy::evalBoard(vector<vector<int> > &board) {
+//   return 0;
+// }
 
 int evalEmptyCells(vector<vector<int> > &board) {
   int emptyCells = 0;
