@@ -11,7 +11,7 @@ int main(void) {
 
   cin >> userInput;
   if (userInput == 'p') {
-    Policy* p = new ExtensivePolicy();
+    Policy* p = new MarkovDecisionPolicy();
     p->play();
     cout << "game over" << endl;
     return 0;

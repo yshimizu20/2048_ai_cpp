@@ -19,16 +19,16 @@ public:
 };
 
 /*
-  * ExtensivePolicy
+  * MarkovDecisionPolicy
   * 
   * This policy evaluates every possible stochastic outcomes for each state for a certain depth and returns the best move.
   * 
   * It uses a depth of 3 and a heuristic function to evaluate the board.
 */
-class ExtensivePolicy : public Policy {
+class MarkovDecisionPolicy : public Policy {
 public:
-  ExtensivePolicy() : Policy() {
-    cout << "ExtensivePolicy created" << endl;
+  MarkovDecisionPolicy() : Policy() {
+    cout << "MarkovDecisionPolicy created" << endl;
   }
 
   int applyBestMove();
