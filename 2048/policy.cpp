@@ -74,7 +74,7 @@ float Policy::minOfPossibleMoves(vector<vector<int> > &board, int depth, float p
   return sum / scores.size();
 }
 
-float Policy::evalBoard(vector<vector<int> > &board) {
+float ExtensivePolicy::evalBoard(vector<vector<int> > &board) {
   int emptyCells = evalEmptyCells(board);
   int proximity = evalProximity(board);
   int steadyIncrement = evalSteadyIncrement(board);

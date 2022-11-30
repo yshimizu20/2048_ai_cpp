@@ -15,6 +15,11 @@ public:
   int applyBestMove();
   pair<int, float> bestMove(vector<vector<int> > &board, int depth, float prob);
   float minOfPossibleMoves(vector<vector<int> > &board, int depth, float prob);
+  virtual float evalBoard(vector<vector<int> > &board) = 0;
+};
+
+class ExtensivePolicy : public Policy {
+public:
   float evalBoard(vector<vector<int> > &board);
 };
 
