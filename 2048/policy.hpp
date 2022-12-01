@@ -43,7 +43,23 @@ public:
  * This policy evaluates the best move using the Monte Carlo Tree Search algorithm.
  *
  * It uses a depth of 8 with 500 iterations, and a heuristic function to evaluate the board.
- */
+*/
+
+/*
+ * Monte Carlo Policy
+ *
+ * Run 500 iterations of moves starting from the given state and return the best move
+*/
+class MonteCarloPolicy : public Policy {
+public:
+  MonteCarloPolicy() : Policy() {
+    cout << "MonteCarloPolicy created" << endl;
+  }
+
+  int applyBestMove();
+  int randomPlay(Game &g, int dir);
+  float evalBoard(vector<vector<int>> &board) { return 0; }
+};
 
 int evalEmptyCells(vector<vector<int> > &board);
 int evalSteadyIncrement(vector<vector<int>> &board);

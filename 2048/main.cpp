@@ -11,7 +11,7 @@ int main(void) {
 
   cin >> userInput;
   if (userInput == 'p') {
-    Policy* p = new MarkovDecisionPolicy();
+    Policy *p = new MonteCarloPolicy();
     p->play();
     cout << "game over" << endl;
     return 0;

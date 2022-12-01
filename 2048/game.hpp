@@ -16,6 +16,7 @@ public:
 
   void printBoard();
   vector<vector<int> > getBoard();
+  void setBoard(vector<vector<int> > &board) { mainBoard = board; score = 0; win = 0; }
   bool addTile(vector<vector<int> > &board);
   int run(int direction);
   int move(vector<vector<int> >& board, int direction);
@@ -27,4 +28,5 @@ public:
   void rotate180(vector<vector<int> > &board);
   int getScore() const { return score; };
   string boardToString(vector<vector<int>> &board);
+  int sumBoard();
 };

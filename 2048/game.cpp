@@ -166,12 +166,24 @@ void Game::rotate180(vector<vector<int> > &board) {
 /*
   * use this function to get hashable string of board state
 */
-string boardToString(vector<vector<int> > &board) {
+string Game::boardToString(vector<vector<int> > &board) {
   string ret = "";
 
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 4; j++) {
       ret += to_string(board[i][j]) + " ";
+    }
+  }
+
+  return ret;
+}
+
+int Game::sumBoard() {
+  int ret = 0;
+
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 4; j++) {
+      ret += mainBoard[i][j];
     }
   }
 
