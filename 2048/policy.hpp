@@ -14,26 +14,26 @@ public:
   void play();
 
   virtual int applyBestMove() = 0;
-  virtual float evalBoard(vector<vector<int>> &board) = 0;
+  virtual float evalBoard(vector<vector<int> > &board) = 0;
   // virtual pair<int, float> bestMove(vector<vector<int> > &board, int depth, float prob) = 0;
 };
 
 /*
-  * MarkovDecisionPolicy
+  * ExpectimaxPolicy
   * 
   * This policy evaluates every possible stochastic outcomes for each state for a certain depth and returns the best move.
   * 
   * It uses a depth of 3 and a heuristic function to evaluate the board.
 */
-class MarkovDecisionPolicy : public Policy {
+class ExpectimaxPolicy : public Policy {
 public:
-  MarkovDecisionPolicy() : Policy() {
-    cout << "MarkovDecisionPolicy created" << endl;
+  ExpectimaxPolicy() : Policy() {
+    cout << "ExpectimaxPolicy created" << endl;
   }
 
   int applyBestMove();
-  pair<int, float> bestMove(vector<vector<int>> &board, int depth, float prob);
-  float minOfPossibleMoves(vector<vector<int>> &board, int depth, float prob);
+  pair<int, float> bestMove(vector<vector<int> > &board, int depth, float prob);
+  float minOfPossibleMoves(vector<vector<int> > &board, int depth, float prob);
   float evalBoard(vector<vector<int> > &board);
 };
 
@@ -58,9 +58,9 @@ public:
 
   int applyBestMove();
   int randomPlay(Game &g, int dir);
-  float evalBoard(vector<vector<int>> &board) { return 0; }
+  float evalBoard(vector<vector<int> > &board) { return 0; }
 };
 
 int evalEmptyCells(vector<vector<int> > &board);
-int evalSteadyIncrement(vector<vector<int>> &board);
-int evalProximity(vector<vector<int>> &board);
+int evalSteadyIncrement(vector<vector<int> > &board);
+int evalProximity(vector<vector<int> > &board);

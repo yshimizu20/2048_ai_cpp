@@ -1,13 +1,13 @@
 #include "policy.hpp"
 
-int MarkovDecisionPolicy::applyBestMove() {
+int ExpectimaxPolicy::applyBestMove() {
   vector<vector<int> > board = game->getBoard();
   int direction = bestMove(board, 3, 1.0).first;
 
   return game->run(direction);
 }
 
-pair<int, float> MarkovDecisionPolicy::bestMove(vector<vector<int> > &board, int depth, float prob) {
+pair<int, float> ExpectimaxPolicy::bestMove(vector<vector<int> > &board, int depth, float prob) {
   float bestScore = INT_MIN;
   int bestDirection = 0;
 
@@ -27,7 +27,7 @@ pair<int, float> MarkovDecisionPolicy::bestMove(vector<vector<int> > &board, int
   return make_pair(bestDirection, bestScore);
 }
 
-float MarkovDecisionPolicy::minOfPossibleMoves(vector<vector<int> > &board, int depth, float prob) {
+float ExpectimaxPolicy::minOfPossibleMoves(vector<vector<int> > &board, int depth, float prob) {
   if (depth == 0) {
     return evalBoard(board);
   }
@@ -41,7 +41,7 @@ float MarkovDecisionPolicy::minOfPossibleMoves(vector<vector<int> > &board, int 
       int score = 0;
       for (int dice : {2, 4}) {
         for (float ratio : {0.9, 0.1}) {
-          vector<vector<int>> newBoard = board;
+          vector<vector<int> > newBoard = board;
           newBoard[i][j] = dice;
           score += bestMove(newBoard, depth, prob * ratio).second * ratio;
         }
@@ -58,7 +58,7 @@ float MarkovDecisionPolicy::minOfPossibleMoves(vector<vector<int> > &board, int 
   return sum / scores.size();
 }
 
-float MarkovDecisionPolicy::evalBoard(vector<vector<int> > &board) {
+float ExpectimaxPolicy::evalBoard(vector<vector<int> > &board) {
   int emptyCells = evalEmptyCells(board);
   int proximity = evalProximity(board);
   int steadyIncrement = evalSteadyIncrement(board);
