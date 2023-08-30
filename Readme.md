@@ -49,7 +49,7 @@ The bottleneck of solving the game is the branching factor and the large state s
 The two algorithms implemented here are effective in evaluating an action without requiring large amounts of data stored.
 
 ##### Algorithm 1: Montecarlo
-```bash
+```
 #pseudocode
 For each iteration:
     For each state after performing "up", "down", "left", "right" on state:
@@ -58,7 +58,7 @@ For each iteration:
 ```
 
 ##### Algorithm 2: Expectimax
-```bash
+```
 #pseudocode
 For each iteration:
     Make complete expectimax tree of all possible states within 3 moves and find the heuristic value of all depth=0 states
